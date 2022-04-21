@@ -1,0 +1,17 @@
+name: webapp
+services:
+  demo:
+    build: .
+    depends_on:
+      - mysql
+    ports:
+      - 8080:8080
+
+  mysql:
+    image: mysql
+    ports:
+     - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: budget
+      

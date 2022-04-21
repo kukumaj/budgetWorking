@@ -1,0 +1,9 @@
+<Context>
+    <Resource name="jdbc/budget"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              type="javax.sql.DataSource"
+              username="root"
+              password="root"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://mysql:3306/budget?serverTimezone=Europe/Warsaw"/>
+</Context>
