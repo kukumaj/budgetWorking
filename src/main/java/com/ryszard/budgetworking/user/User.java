@@ -11,8 +11,15 @@ public class User {
     Date birthDate;
     String password;
 
-    public User(int id, String areaCode, String phoneNumber, String firstName, String lastName, Date birthDate, String password) {
-        this.id = id;
+    public User(String areaCode, String phoneNumber, String firstName, String lastName, Date birthDate, String password) {
+        this.areaCode = areaCode;
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.password = password;
+    }
+    public User( int id,String areaCode, String phoneNumber, String firstName, String lastName, Date birthDate, String password) {
         this.areaCode = areaCode;
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
@@ -21,14 +28,15 @@ public class User {
         this.password = password;
     }
 
+
+    public User() { }
     public int getId() {
-        return 0;
+        return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
-
     public String getAreaCode() {
         return areaCode;
     }

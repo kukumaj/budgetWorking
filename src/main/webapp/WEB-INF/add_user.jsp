@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Rysiek
@@ -12,13 +13,32 @@
 </head>
 <body>
 <main>
-    <h1>Add User</h1>
-    <form action="${pageContext.request.contextPath}/add_users" method="post">
+    <c:if test="${user != null}">
+        Edit User
+        ${pageContext.request.contextPath}
+    </c:if>
+    <c:if test="${user == null}">
+        Add New User
+        ${pageContext.request.contextPath}
+    </c:if>
+
+    <c:if test="${user == null}">
+        <form action="${pageContext.request.contextPath}/add_users" method="post">
+    </c:if>
+    <c:if test="${user != null}">
+        <form action="${pageContext.request.contextPath}/edit" method="post">
+    </c:if>
+
+
+        <c:if test="${user != null}">
+            <h2>id!! ${user.id}</h2>
+            <input type="hidden" name="id" value="<c:out value='${user.id}' />" />
+        </c:if>
         <fieldset>
             <legend>Add new position</legend>
             <label class="keyboard-inputs">
                 Area code:
-                <input name="area" placeholder="for example 123">
+                <input name="area" value="<c:out value='${user.areaCode}' />" placeholder="for example 123">
             </label></br>
             <label class="keyboard-inputs">
                 Phone number:
