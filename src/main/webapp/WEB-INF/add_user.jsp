@@ -42,23 +42,19 @@
             </label></br>
             <label class="keyboard-inputs">
                 Phone number:
-                <input name="phoneNumber"   placeholder="for example 1555555555">
+                <input name="phoneNumber" value="${user.phoneNumber}" placeholder="for example 1555555555">
             </label></br>
             <label class="keyboard-inputs">
                 Firs name:
-                <input name="firstName"  placeholder="for example Tom">
+                <input name="firstName" value="${user.firstName}"  placeholder="for example Tom">
             </label></br>
             <label class="keyboard-inputs">
                 Last name:
-                <input name="last name"   placeholder="for example Jerry">
-            </label></br>
-            <label class="keyboard-inputs">
-                Birth day:
-                <input name="birth date"   placeholder="for example 13-05-2005">
+                <input name="last name" value="${user.lastName}"  placeholder="for example Jerry">
             </label></br>
             <label class="keyboard-inputs">
                 Password:
-                <input name="password"   placeholder="for example passswwword">
+                <input type="password" name="password" value="${user.password}"  placeholder="for example passswwword">
             </label></br>
             <button>Zapisz</button>
         </fieldset>

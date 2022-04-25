@@ -4,12 +4,9 @@ import com.ryszard.budgetworking.db.DataSourceProvider;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.logging.Level;
 
 
 class UserDao {
@@ -41,13 +38,16 @@ class UserDao {
         }
     }
 
-    public void update(int id, String area) {
-        System.out.println("Update test   " +id + area);
-        String sql = "UPDATE users set area_code = ? where id = ?;";
+    public void update(int id, User user) {
+        String sql = "UPDATE users set area_code = ?, phone_number = ?, first_name = ?, last_name = ?, password = ? where id = ?;";
         try (Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, "123");
-            statement.setInt(2, 1);
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, user.areaCode);
+            statement.setString(2, user.phoneNumber);
+            statement.setString(3, user.firstName);
+            statement.setString(4, user.lastName);
+            statement.setString(5, user.password);
+            statement.setInt(6, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -62,7 +62,7 @@ class UserDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String area = resultSet.getString("area_code");
-                items.add(new User(area, null, null, null, null, null));
+                items.add(new User(area, null, null, null, null));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -71,23 +71,25 @@ class UserDao {
     }
 
     public User findUser(int id) {
-        User user = null;
+        User user;
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT  area_code FROM users WHERE id=?")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE id=?")
+        ) {
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    user = new User();
-                    System.out.println("RESULT SET   " + resultSet);
-                    user.setId(resultSet.getInt("id"));
-                    user.setAreaCode(resultSet.getString("area_code"));
-                }
+                resultSet.next();
+                user = new User();
+                System.out.println("RESULT SET   " + resultSet);
+                user.setId(resultSet.getInt("id"));
+                user.setAreaCode(resultSet.getString("area_code"));
+                user.setPhoneNumber(resultSet.getString("phone_number"));
+                user.setPassword(resultSet.getString("password"));
+                user.setFirstName(resultSet.getString("first_name"));
+                user.setLastName(resultSet.getString("last_name"));
             }
         } catch (SQLException sqlException) {
             throw new RuntimeException(sqlException);
         }
         return user;
     }
-
-
 }
