@@ -2,61 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="pl">
 <head>
-    <title>Budżet domowy</title>
+    <title>Banking app</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
 <main>
-    <h1>Budżet domowy</h1>
-    <section class="summary">
-        <h2>Podsumowanie</h2>
-        <p>Wpływy: ${requestScope.summary.incomes}zł</p>
-        <p>Wydatki: ${requestScope.summary.expenses}zł</p>
-        <p>Bilans: ${requestScope.summary.balance}zł</p>
-    </section>
-    <a href="${pageContext.request.contextPath}/add">Dodaj wpływ lub wydatek</a>
-    <c:if test="${not empty requestScope.incomes}">
-        <section>
-            <h2>Wpływy</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Opis</th>
-                    <th>Kwota</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="income" items="${requestScope.incomes}">
-                    <tr>
-                        <td><c:out value="${income.description}"/></td>
-                        <td>${income.value}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </section>
-    </c:if>
-    <c:if test="${not empty requestScope.expenses}">
-        <section>
-            <h2>Wydatki</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Opis</th>
-                    <th>Kwota</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="expense" items="${requestScope.expenses}">
-                    <tr>
-                        <td><c:out value="${expense.description}"/></td>
-                        <td>${expense.value}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </section>
-    </c:if>
+    <h1>Banking App</h1>
+    <a href="add_users"/>Add User</a>
+    <a href="users"/>All Users</a>
 </main>
 </body>
 </html>

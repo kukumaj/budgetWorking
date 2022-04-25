@@ -3,7 +3,7 @@ package com.ryszard.budgetworking.user;
 import java.util.Date;
 
 public class User {
-    int id;
+    long id;
     String areaCode;
     String phoneNumber;
     String firstName;
@@ -20,7 +20,8 @@ public class User {
         this.birthDate = birthDate;
         this.password = password;
     }
-    public User( int id,String areaCode, String phoneNumber, String firstName, String lastName, Date birthDate, String password) {
+    public User( long id,String areaCode, String phoneNumber, String firstName, String lastName, Date birthDate, String password) {
+        this.id = id;
         this.areaCode = areaCode;
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
@@ -31,11 +32,11 @@ public class User {
 
 
     public User() { }
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
     public String getAreaCode() {

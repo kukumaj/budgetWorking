@@ -15,10 +15,15 @@
 <body>
   <main>
     <h1>Users List</h1>
+      <a href="add_users"/>Add User</a> </br></br>
       <section class="summary">
-          <p>Users: ${requestScope.users}</p>
           <c:forEach var="user" items="${requestScope.users}">
-                  <div>${user.areaCode}</div> </br>
+
+                  <div>Area code : ${user.areaCode}</div>
+                  <div>Id : ${user.id}</div>
+              <a href="delete?id=<c:out value='${user.id}' />">Delete</a>
+              <a href="edit?id=<c:out value='${user.id}' />">Edit</a></br></br></br></br>
+
           </c:forEach>
       </section>
   </main>

@@ -48,7 +48,7 @@ public class UsersUpdateController extends HttpServlet {
         try {
             User user = new User(area, phoneNumber, firstName, lastName, sdf1.parse(birthDate), password);
             userDao.update(id, user);
-            response.sendRedirect(request.getContextPath() + "/");
+            response.sendRedirect(request.getContextPath() + "/users");
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }

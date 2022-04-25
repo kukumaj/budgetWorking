@@ -26,6 +26,6 @@ public class UsersAddController extends HttpServlet {
         System.out.println("TEST2     "+firstName+area+phoneNumber);
         userDao.save(area, phoneNumber, firstName, lastName, birthDate, password);
 
-        response.sendRedirect(request.getContextPath() + "/");
+        response.sendRedirect(request.getContextPath() + "/users");
     }
 }

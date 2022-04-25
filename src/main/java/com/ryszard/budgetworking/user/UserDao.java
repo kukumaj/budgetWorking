@@ -60,14 +60,16 @@ class UserDao {
     }
 
     public List<User> findAllUsers() {
-        String sql = "SELECT area_code FROM users";
+        String sql = "SELECT id,area_code FROM users";
         List<User> items = new ArrayList<>();
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            ResultSet resultSet = statement.executeQuery();
+
+             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String area = resultSet.getString("area_code");
-                items.add(new User(area, null, null, null, null,null));
+                long id = resultSet.getLong("id");
+                items.add(new User(id, area, null, null, null, null,null));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -96,5 +98,16 @@ class UserDao {
             throw new RuntimeException(sqlException);
         }
         return user;
+    }
+    public boolean delete(int id) {
+        boolean rowDeleted;
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement("delete from users where id = ?;")) {
+            statement.setInt(1, id);
+            rowDeleted = statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rowDeleted;
     }
 }
