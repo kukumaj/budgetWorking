@@ -6,10 +6,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Enumeration;
 
 @WebServlet("/edit")
@@ -41,8 +43,15 @@ public class UsersUpdateController extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("last name");
         String password = request.getParameter("password");
-        User user = new User(area, phoneNumber, firstName, lastName, password);
-        userDao.update(id, user);
-        response.sendRedirect(request.getContextPath() + "/");
+        String birthDate = request.getParameter("birthDate");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            User user = new User(area, phoneNumber, firstName, lastName, sdf1.parse(birthDate), password);
+            userDao.update(id, user);
+            response.sendRedirect(request.getContextPath() + "/");
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

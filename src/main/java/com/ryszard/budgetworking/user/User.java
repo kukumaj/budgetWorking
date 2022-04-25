@@ -8,20 +8,24 @@ public class User {
     String phoneNumber;
     String firstName;
     String lastName;
+    Date birthDate;
     String password;
+    String ok;
 
-    public User(String areaCode, String phoneNumber, String firstName, String lastName, String password) {
+    public User(String areaCode, String phoneNumber, String firstName, String lastName, Date birthDate, String password) {
         this.areaCode = areaCode;
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.birthDate = birthDate;
         this.password = password;
     }
-    public User(int id, String areaCode, String phoneNumber, String firstName, String lastName, String password) {
+    public User( int id,String areaCode, String phoneNumber, String firstName, String lastName, Date birthDate, String password) {
         this.areaCode = areaCode;
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.birthDate = birthDate;
         this.password = password;
     }
 
@@ -65,7 +69,15 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public String getPassword() {
         return password;
     }

@@ -50,7 +50,11 @@
             </label></br>
             <label class="keyboard-inputs">
                 Last name:
-                <input name="last name" value="${user.lastName}"  placeholder="for example Jerry">
+                <input name="lastName" value="${user.lastName}"  placeholder="for example Jerry">
+            </label></br>
+            <label class="keyboard-inputs">
+                Birth date:
+                <input type="date" name="birthDate" value="${user.birthDate}">
             </label></br>
             <label class="keyboard-inputs">
                 Password:

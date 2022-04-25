@@ -1,11 +1,14 @@
 name: webapp
 services:
   demo:
+    environment:
+      - CATALINA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
     build: .
     depends_on:
       - mysql
     ports:
       - 8080:8080
+      - 8000:8000
 
   mysql:
     image: mysql
@@ -14,4 +17,4 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: budget
-      
+

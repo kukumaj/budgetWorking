@@ -20,8 +20,11 @@ public class UsersAddController extends HttpServlet {
         String area = request.getParameter("area");
         String phoneNumber = request.getParameter("phoneNumber");
         String firstName = request.getParameter("firstName");
-        System.out.println("DUPA 2     "+firstName+area+phoneNumber);
-        userDao.save(area, phoneNumber, firstName);
+        String lastName = request.getParameter("lastName");
+        String birthDate = request.getParameter("birthDate");
+        String password = request.getParameter("password");
+        System.out.println("TEST2     "+firstName+area+phoneNumber);
+        userDao.save(area, phoneNumber, firstName, lastName, birthDate, password);
 
         response.sendRedirect(request.getContextPath() + "/");
     }

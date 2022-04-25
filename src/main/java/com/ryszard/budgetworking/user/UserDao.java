@@ -7,9 +7,11 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 class UserDao {
+    private static final Logger LOGGER = Logger.getLogger( UserDao.class.getName());
     private final DataSource dataSource;
 
     public UserDao() {
@@ -20,14 +22,15 @@ class UserDao {
         }
     }
 
-    public void save(String area, String phoneNumber, String firstName) {
-        System.out.println("Test    " + firstName);
+    public void save(String area, String phoneNumber, String firstName, String lastName, String birthDate, String password) {
+        LOGGER.info("Test    " + birthDate);
         String sql = "INSERT INTO users(area_code,phone_number , first_name) VALUES (?, ?, ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, area);
             statement.setString(2, phoneNumber);
             statement.setString(3, firstName);
+
             //TODO: Do it later
 //            statement.setString(4, user.getLastName());
 //            statement.setDate(5, (Date) user.getBirthDate());
@@ -39,7 +42,8 @@ class UserDao {
     }
 
     public void update(int id, User user) {
-        String sql = "UPDATE users set area_code = ?, phone_number = ?, first_name = ?, last_name = ?, password = ? where id = ?;";
+        LOGGER.info("oKOOOO");
+        String sql = "UPDATE users set area_code = ?, phone_number = ?, first_name = ?, last_name = ?, password = ?, birth_date = ? where id = ?;";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, user.areaCode);
@@ -47,7 +51,8 @@ class UserDao {
             statement.setString(3, user.firstName);
             statement.setString(4, user.lastName);
             statement.setString(5, user.password);
-            statement.setInt(6, id);
+            statement.setDate(6,  new java.sql.Date(user.birthDate.getTime()));
+            statement.setInt(7, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -62,7 +67,7 @@ class UserDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String area = resultSet.getString("area_code");
-                items.add(new User(area, null, null, null, null));
+                items.add(new User(area, null, null, null, null,null));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
