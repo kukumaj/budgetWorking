@@ -22,16 +22,16 @@ class UserDao {
         }
     }
 
-    public void save(String area, String phoneNumber, String firstName, String lastName, String birthDate, String password) {
-        String sql = "INSERT INTO users(area_code, phone_number , first_name, last_name ,birth_date ,password) VALUES (?, ?, ?, ?, ? , ?)";
+    public void save(String area, String phoneNumber, String firstName, String lastName, java.util.Date birthDate, String password) {
+        String sql = "INSERT INTO users(area_code, phone_number, first_name, last_name, birth_date, password) VALUES (?, ?, ?, ?, ? , ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, area);
-            statement.setString(2, phoneNumber);
-            statement.setString(3, firstName);
-            statement.setString(4, lastName);
-            statement.setDate(5, Date.valueOf(birthDate));
-            statement.setString(6, password);
+            statement.setString(1, area.trim());
+            statement.setString(2, phoneNumber.trim());
+            statement.setString(3, firstName.trim());
+            statement.setString(4, lastName.trim());
+            statement.setDate(5, new java.sql.Date(birthDate.getTime()));
+            statement.setString(6, password.trim());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

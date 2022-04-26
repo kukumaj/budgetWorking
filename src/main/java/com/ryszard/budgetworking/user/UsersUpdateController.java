@@ -42,7 +42,7 @@ public class UsersUpdateController extends HttpServlet {
             userDao.update(id, user);
             response.sendRedirect(request.getContextPath() + "/users");
         } catch (ParseException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("You have not provided the Birth Date ", e);
         }
 
     }

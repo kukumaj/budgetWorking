@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @WebServlet("/add_users")
 public class UsersAddController extends HttpServlet {
@@ -23,8 +25,13 @@ public class UsersAddController extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String birthDate = request.getParameter("birthDate");
         String password = request.getParameter("password");
-        userDao.save(area, phoneNumber, firstName, lastName, birthDate, password);
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            userDao.save(area, phoneNumber, firstName, lastName, sdf1.parse(birthDate), password);
+            response.sendRedirect(request.getContextPath() + "/users");
+        } catch (ParseException e) {
+            throw new RuntimeException("You have not provided the Birth Date ", e);
+        }
 
-        response.sendRedirect(request.getContextPath() + "/users");
     }
 }
