@@ -8,7 +8,8 @@ import javax.sql.DataSource;
 public class DataSourceProvider {
     private static DataSource dataSource;
 
-    private DataSourceProvider() { }
+    private DataSourceProvider() {
+    }
 
     public static DataSource getDataSource() throws NamingException {
         if (dataSource == null) {

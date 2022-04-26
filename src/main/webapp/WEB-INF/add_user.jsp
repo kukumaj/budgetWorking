@@ -31,7 +31,7 @@
 
 
         <c:if test="${user != null}">
-            <h2>id!! ${user.id}</h2>
+            <h2>id =  ${user.id}</h2>
             <input type="hidden" name="id" value="<c:out value='${user.id}' />" />
         </c:if>
         <fieldset>

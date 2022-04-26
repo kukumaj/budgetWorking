@@ -20,7 +20,8 @@ public class User {
         this.birthDate = birthDate;
         this.password = password;
     }
-    public User( long id,String areaCode, String phoneNumber, String firstName, String lastName, Date birthDate, String password) {
+
+    public User(long id, String areaCode, String phoneNumber, String firstName, String lastName, Date birthDate, String password) {
         this.id = id;
         this.areaCode = areaCode;
         this.phoneNumber = phoneNumber;
@@ -31,7 +32,9 @@ public class User {
     }
 
 
-    public User() { }
+    public User() {
+    }
+
     public long getId() {
         return id;
     }
@@ -39,6 +42,7 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
+
     public String getAreaCode() {
         return areaCode;
     }
