@@ -60,7 +60,7 @@
                 Password:
                 <input type="password" name="password" value="${user.password}"  placeholder="for example passswwword">
             </label></br>
-            <button>Zapisz</button>
+            <button>Save</button>
         </fieldset>
     </form>
 </main>

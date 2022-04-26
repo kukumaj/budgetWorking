@@ -24,17 +24,15 @@ class UserDao {
 
     public void save(String area, String phoneNumber, String firstName, String lastName, String birthDate, String password) {
         LOGGER.info("Test    " + birthDate);
-        String sql = "INSERT INTO users(area_code,phone_number , first_name) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO users(area_code, phone_number , first_name, last_name ,birth_date ,password) VALUES (?, ?, ?, ?, ? , ?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, area);
             statement.setString(2, phoneNumber);
             statement.setString(3, firstName);
-
-            //TODO: Do it later
-//            statement.setString(4, user.getLastName());
-//            statement.setDate(5, (Date) user.getBirthDate());
-//            statement.setString(6, user.getPassword());
+            statement.setString(4, lastName);
+            statement.setDate(5, Date.valueOf(birthDate));
+            statement.setString(6, password);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

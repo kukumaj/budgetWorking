@@ -41,7 +41,7 @@ public class UsersUpdateController extends HttpServlet {
             System.out.println(names.nextElement());
         }
         String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("last name");
+        String lastName = request.getParameter("lastName");
         String password = request.getParameter("password");
         String birthDate = request.getParameter("birthDate");
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
