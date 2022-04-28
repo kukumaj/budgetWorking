@@ -22,7 +22,8 @@
                   <div>Area code : ${user.areaCode}</div>
                   <div>Id : ${user.id}</div>
               <a href="delete?id=<c:out value='${user.id}' />">Delete</a>
-              <a href="edit?id=<c:out value='${user.id}' />">Edit</a></br></br></br></br>
+              <a href="edit?id=<c:out value='${user.id}' />">Edit</a>
+              <a href="show?id=<c:out value='${user.id}' />">Show User</a></br></br></br></br>
 
           </c:forEach>
       </section>

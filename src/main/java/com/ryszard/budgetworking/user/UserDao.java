@@ -87,6 +87,7 @@ class UserDao {
                 user.setPassword(resultSet.getString("password"));
                 user.setFirstName(resultSet.getString("first_name"));
                 user.setLastName(resultSet.getString("last_name"));
+                user.setBirthDate(resultSet.getDate("birth_date"));
             }
         } catch (SQLException sqlException) {
             throw new RuntimeException(sqlException);
